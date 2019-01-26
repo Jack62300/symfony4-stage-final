@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% form_theme formContact 'bootstrap_4_layout.html.twig' %}
+
+
+{% block body%}
+
+<h1>Bienvenue sur la page de création</h1>
+
+
+{{ form_start(formContact) }}
+{{ form_row(formContact.lastname, {'attr': {'placeholder': "Votre Nom"}}) }}
+{{ form_row(formContact.firstname, {'attr': {'placeholder': "Votre Prénom"}}) }}
+{{ form_row(formContact.email, {'attr': {'placeholder': "Votre Email"}}) }}
+{{ form_row(formContact.content, {'attr': {'placeholder': "Votre message"}}) }}
+{{ form_row(formContact.secteur, {'attr': {'placeholder': "Inqiqué le secteur désiré "}}) }}
+<button type="submit" class="btn btn-success">
+
+    {% if editMode %}
+    Enregistrer
+    {% else %}
+    Ajouter L'article
+    {% endif %}
+
+</button>
+{{ form_end(formContact) }}
+
+{% for message in messages %}
+
+<div class="alert alert-dismissible alert-warning">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <h4 class="alert-heading">Information!</h4>
+    <p class="mb-0">Email envoyé à {{ message }}</p>
+  </div>
+
+{% endfor %}
+{% endblock %}
